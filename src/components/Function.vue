@@ -42,9 +42,9 @@
       <button class="reset-btn">重置</button>
     </div>
 
-    <div class="forget-container">
+    <div class="show">
         <!-- 使用动态组件切换内容 -->
-       <component :is="currentComponent"></component>
+       <component :is="currentComponent" ></component>
     </div>
 
     <!-- 分页区域 -->
@@ -105,6 +105,7 @@ export default {
   background-color: #fff5a3;
   min-height: 100vh;
   text-align: center;
+  justify-content: space-between;
   padding: 20px;
 }
 
@@ -119,6 +120,12 @@ export default {
 .logo {
   font-weight: bold;
   font-size: 1.5em;
+}
+
+.show {
+  width: 70vw;
+  height: 60vh;
+  margin-left: 30vh;
 }
 
 .nav-links a {
