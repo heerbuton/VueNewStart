@@ -2,7 +2,9 @@
   <div class="container">
     <!-- 顶部导航栏 -->
     <nav class="navbar">
-      <div class="logo">KFBB</div>
+      <div class="logo">
+        <img src="@/assets/LOGO.png" class="logop" />
+      </div>
       <div class="nav-links">
         <a href="#" class="active"><i class="fas fa-home"></i> 首页</a>
         <a href="#"><i class="fas fa-edit"></i> 发布兼职</a>
@@ -80,6 +82,11 @@ export default {
 .logo {
   font-weight: bold;
   font-size: 1.5em;
+}
+
+.logop {
+  width: 200px;
+  height: auto;
 }
 
 .nav-links a {

@@ -2,13 +2,15 @@
   <div class="container">
     <!-- 顶部导航栏 -->
     <nav class="navbar">
-      <div class="logo">KFBB</div>
+      <div class="logo">
+         <img src="@/assets/LOGO.png" class="logop" />
+      </div>
       <div class="nav-links">
-        <a href="#" @click.prevent="activeIndex = 0" :class="{ active: activeIndex === 0 }"><i class="fas fa-home"></i> 首页</a>
-        <a href="#" @click.prevent="activeIndex = 1" :class="{ active: activeIndex === 1 }"><i class="fas fa-edit"></i> 发布兼职</a>
-        <a href="#" @click.prevent="activeIndex = 2" :class="{ active: activeIndex === 2 }"><i class="fas fa-comment"></i> 评价中心</a>
-        <a href="#" @click.prevent="activeIndex = 3" :class="{ active: activeIndex === 3 }"><i class="fas fa-comments"></i> 聊天中心</a>
-        <a href="#" @click.prevent="activeIndex = 4" :class="{ active: activeIndex === 4 }"><i class="fas fa-user"></i> 个人中心</a>
+        <a href="#" @click.prevent="activeIndex = 0" :class="{ active: activeIndex === 0 } "><i class="fas fa-home"></i> 首页</a>
+        <a href="#" @click="changeComponent('PublishComponent')" @click.prevent="activeIndex = 1" :class="{ active: activeIndex === 1 }"><i class="fas fa-edit"></i> 发布兼职</a>
+        <a href="#" @click="changeComponent('AppraiseComponent')" @click.prevent="activeIndex = 2" :class="{ active: activeIndex === 2 }"><i class="fas fa-comment"></i> 评价中心</a>
+        <a href="#" @click="changeComponent('ChatComponent')" @click.prevent="activeIndex = 3" :class="{ active: activeIndex === 3 }"><i class="fas fa-comments"></i> 聊天中心</a>
+        <a href="#" @click="changeComponent('IndividualComponent')" @click.prevent="activeIndex = 4" :class="{ active: activeIndex === 4 }"><i class="fas fa-user"></i> 个人中心</a>
       </div>
       <div class="avatar">
           <img src="头像图片路径" alt="头像" v-if="isLogin" />
@@ -40,9 +42,9 @@
       <button class="reset-btn">重置</button>
     </div>
 
-    <!-- 内容区域 -->
-    <div class="content">
-      <div class="empty-message">AI插件1</div>
+    <div class="forget-container">
+        <!-- 使用动态组件切换内容 -->
+       <component :is="currentComponent"></component>
     </div>
 
     <!-- 分页区域 -->
@@ -55,17 +57,31 @@
 </template>
 
 <script>
+import PublishComponent from './Publish.vue';
+import AppraiseComponent from './Appraise.vue';
+import ChatComponent from './ChatComponent.vue';
+import IndividualComponent from './Individual.vue';
 export default {
   name: "FunctionPage",
+  components: {
+      PublishComponent,
+      AppraiseComponent,
+      ChatComponent,
+      IndividualComponent
+  },
   data() {
     return {
-      activeIndex: 0, // 当前激活的导航索引
+      activeIndex: 1, // 当前激活的导航索引
       isLogin: false, // 是否登录
       currentPage: 1, // 当前分页
       totalPage: 5, // 总共多少页
+      currentComponent: 'PublishComponent',
     };
   },
   methods: {
+    changeComponent(componentName) {
+          this.currentComponent = componentName;
+     },
     changePage(page) {
       this.currentPage = page;
       // 更新数据或调用接口获取当前页的数据
@@ -127,6 +143,11 @@ export default {
   justify-content: center;
   margin: 10px;
   float: right;
+}
+
+.logop {
+  width: 200px;
+  height: auto;
 }
 
 .search-container {

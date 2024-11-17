@@ -79,7 +79,6 @@ window.onload = function() {
 	display: flex;
 	justify-content: space-between; /* 将两个子 div 水平分布在两半 */
 	align-items: center; /* 垂直居中，如果你希望它们在页面中心 */
-	align-items: center;
 	flex-direction: row;
 }
 
